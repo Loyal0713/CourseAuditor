@@ -10,7 +10,7 @@ import java.sql.Statement;
  * This class handles all communication made between the mysql database server
  * and the course auditor program itself
  * 
- * @author brown8jt - Josh Brown\
+ * @author brown8jt - Josh Brown
  * @version 1.0.3
  *
  */
@@ -98,9 +98,13 @@ public class MySqlConnection {
 	}
 
 	/**
-	 * Disconnects the program from the database. DOES NOT LOG STUDENT OFF!
+	 * Disconnects the program from the database
 	 */
 	public void disconnect() {
+
+		if (currStudentSession != null) {
+			logout();
+		}
 
 		// disconnect from server
 		con = null;
@@ -126,7 +130,7 @@ public class MySqlConnection {
 
 			try {
 
-				// create query - get individual student with given id
+				// create query - get individual students program view
 				Statement stmt = con.createStatement();
 				String query = "select * from programview where ID = " + id;
 
@@ -136,11 +140,22 @@ public class MySqlConnection {
 				// move result set pointer
 				rs.next();
 
+				// get the last and first name and id of the student
+				String lastNameResult = rs.getString(1);
+				String firstNameResult = rs.getString(2);
+				int idResult = rs.getInt(3);
+
+				int[] programCourses = new int[18];
+
+				// get the program history of the student
+				for (int i = 0; i < programCourses.length; i++) {
+
+					programCourses[i] = rs.getInt(i + 4);
+
+				}
+
 				// create new student for the session
-				currStudentSession = new Student(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4),
-						rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10),
-						rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16),
-						rs.getInt(17), rs.getInt(18), rs.getInt(19), rs.getInt(20));
+				currStudentSession = new Student(lastNameResult, firstNameResult, idResult, programCourses);
 
 				// log to console that student was logged in
 				System.out.println("Logged in: " + currStudentSession.getLastFirstName());
@@ -159,43 +174,172 @@ public class MySqlConnection {
 	}
 
 	/**
-	 * This method prints a students last then first name to the console OR that
-	 * there is no currently running session if there is no student logged in
+	 * This method gets a students last then first name OR that there is no
+	 * currently running session if there is no student logged in
 	 */
-	public void printStudentLastFirstName() {
+	public String getStudentLastFirstName() {
+
+		String retString = "";
 
 		// there is no student currently logged in
 		if (currStudentSession == null) {
 
-			System.out.println("No current session!");
+			retString = "No current session!";
 
 		} else {
 
 			// there is a student logged in
-			System.out.println(currStudentSession.getLastFirstName());
+			retString = currStudentSession.getLastFirstName();
 
 		}
+
+		return retString;
 
 	}
 
 	/**
-	 * This method prints all the currently logged in student's information to the console OR that
+	 * This method gets all the currently logged in student's information OR that
 	 * there is no currently running session if there is no student logged in
 	 */
-	public void printAllStudentInfo() {
+	public String getAllStudentInfo() {
+
+		String retString = "";
 
 		// there is no student currently logged in
 		if (currStudentSession == null) {
 
-			System.out.println("No current session!");
+			retString = "No current session!";
+
+		} else {
+
+			retString = currStudentSession.toString();
+
+		}
+
+		return retString;
+
+	}
+
+	/**
+	 * This method gets the start date of the student currently logged in OR show
+	 * that there is no current session
+	 */
+	public String getStartDate() {
+
+		String retString = "";
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			retString = "No current session!";
 
 		} else {
 
 			// there is a student logged in
-			System.out.println(currStudentSession);
+			retString = currStudentSession.startDate();
 
 		}
 
+		return retString;
+
+	}
+
+	/**
+	 * Returns a string showing how many credits the student has completed
+	 * 
+	 * @return
+	 */
+	public String getCreditsCompleted() {
+
+		String retString = "";
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			retString = "No current session!";
+
+		} else {
+
+			// there is a student logged in
+			retString = currStudentSession.creditsCompleted();
+
+		}
+
+		return retString;
+
+	}
+
+	/**
+	 * Returns a string showing how many credits the student has yet to complete
+	 * 
+	 * @return
+	 */
+	public String getCreditsLeft() {
+
+		String retString = "";
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			retString = "No current session!";
+
+		} else {
+
+			// there is a student logged in
+			retString = currStudentSession.creditsLeft();
+
+		}
+
+		return retString;
+
+	}
+
+	/**
+	 * Returns a string showing how many credits the student is enrolled in
+	 * 
+	 * @return
+	 */
+	public String getCreditsEnrolled() {
+
+		String retString = "";
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			retString = "No current session!";
+
+		} else {
+
+			// there is a student logged in
+			retString = currStudentSession.creditsEnrolled();
+
+		}
+
+		return retString;
+	}
+
+	/**
+	 * Returns a string showing when the student will graduate
+	 * 
+	 * @return
+	 */
+	public String getEstGradDate() {
+
+		String retString = "";
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			retString = "No current session!";
+
+		} else {
+
+			// there is a student logged in
+			retString = currStudentSession.estGradDate();
+
+		}
+
+		return retString;
 	}
 
 }
