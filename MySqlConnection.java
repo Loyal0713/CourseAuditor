@@ -11,7 +11,7 @@ import java.sql.Statement;
  * and the course auditor program itself
  * 
  * @author brown8jt - Josh Brown
- * @version 1.0.3
+ * @since 3/11/2019
  *
  */
 
@@ -57,15 +57,23 @@ public class MySqlConnection {
 	}
 
 	/**
-	 * Connects the program to the database server
+	 * Connects class to the database and returns a code determining status
+	 * 
+	 * MSC.c001 = could not find the jdbc driver; MSC.c002 = successful connection
+	 * to database; MSC.c003 = unsuccessful connection to database
+	 * 
+	 * @return String representing status of the connection process
 	 */
-	public void connect() {
+	public String connect() {
+
+		String msg = "";
 
 		// try to get jdbc driver class
 		try {
 			Class.forName(jdbcDriver);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			msg = "MSC.c001";
 		}
 
 		// check if connection has already been made - connect if not
@@ -73,34 +81,48 @@ public class MySqlConnection {
 
 			// try to create connection
 			try {
+
 				con = DriverManager.getConnection(serverIP, username, password);
-				System.out.println("Connected to database!");
+
+				// successful connection
+				msg = "MSC.c002";
+
 			} catch (SQLException e) {
-				System.out.println("Error connecting to database!");
+
+				// unsuccessful connection
+				msg = "MSC.c003";
+
 			}
 
 		}
 
+		return msg;
+
 	}
 
 	/**
-	 * Logs a student out of the system by removing any reference to any previously
-	 * created student object
+	 * Logs student off of system and returns a code signifying successful logout
+	 * 
+	 * @return String representing successful logout code
 	 */
-	public static void logout() {
+	public String logout() {
 
 		// remove student info
 		currStudentSession = null;
 
 		// print to console that student was logged out
-		System.out.println("Logged out!");
+		return "MSC.lo001";
 
 	}
 
 	/**
-	 * Disconnects the program from the database
+	 * 
+	 * Disconnects class from database and returns code signifying successful
+	 * disconnection
+	 * 
+	 * @return String representing successful disconnection
 	 */
-	public void disconnect() {
+	public String disconnect() {
 
 		if (currStudentSession != null) {
 			logout();
@@ -110,20 +132,25 @@ public class MySqlConnection {
 		con = null;
 
 		// print to console that program was disconnected from the database
-		System.out.println("Disconnected from database!");
+		return "MSC.d001";
 
 	}
 
 	/**
-	 * This method logs a student into the program (currently only uses an id to
-	 * verify)
+	 * Logs a student in using an id (ADD USERNAME VERIFICATION!!) and returns a
+	 * code signifying whether the login was successful or not
+	 * 
+	 * MSC.li001 = successful login; MSC.li002 = could not find student with given
+	 * id; MSC.li003 = a student was already logged in
 	 * 
 	 * @param lastName
 	 *            - String representing last name of student trying to log in
 	 * @param id
 	 *            - Integer representing id of student trying to log in
 	 */
-	public void login(String lastName, String id) {
+	public String login(String lastName, String id) {
+
+		String msg = "";
 
 		// there is no student logged in
 		if (currStudentSession == null) {
@@ -158,24 +185,31 @@ public class MySqlConnection {
 				currStudentSession = new Student(lastNameResult, firstNameResult, idResult, programCourses);
 
 				// log to console that student was logged in
-				System.out.println("Logged in: " + currStudentSession.getLastFirstName());
+				msg = "MSC.li001";
 
 			} catch (SQLException e) {
-				e.printStackTrace();
+
+				msg = "MSC.li002";
+				// e.printStackTrace();
 			}
 
 		} else {
 
 			// there is a student logged in
-			System.out.println("Someone is already logged in!");
+			msg = "MSC.li003";
 
 		}
+
+		return msg;
 
 	}
 
 	/**
 	 * This method gets a students last then first name OR that there is no
 	 * currently running session if there is no student logged in
+	 * 
+	 * @return String representing the first and last name of the student logged in
+	 *         OR that there was no student logged in
 	 */
 	public String getStudentLastFirstName() {
 
@@ -198,8 +232,14 @@ public class MySqlConnection {
 	}
 
 	/**
-	 * This method gets all the currently logged in student's information OR that
-	 * there is no currently running session if there is no student logged in
+	 * This method gets all the currently logged in student's information as a
+	 * String OR that there is no currently running session if there is no student
+	 * logged in
+	 * 
+	 * @return String representing the first and last name, id, and all course
+	 *         information of the currently logged in student OR that there was no
+	 *         student logged in
+	 * 
 	 */
 	public String getAllStudentInfo() {
 
@@ -223,6 +263,8 @@ public class MySqlConnection {
 	/**
 	 * This method gets the start date of the student currently logged in OR show
 	 * that there is no current session
+	 * 
+	 * @return String representing the start date of the student
 	 */
 	public String getStartDate() {
 
@@ -247,7 +289,7 @@ public class MySqlConnection {
 	/**
 	 * Returns a string showing how many credits the student has completed
 	 * 
-	 * @return
+	 * @return String representing the number of credits completed
 	 */
 	public String getCreditsCompleted() {
 
@@ -272,7 +314,8 @@ public class MySqlConnection {
 	/**
 	 * Returns a string showing how many credits the student has yet to complete
 	 * 
-	 * @return
+	 * @return String representing the number of credits the student has yet to
+	 *         complete
 	 */
 	public String getCreditsLeft() {
 
@@ -297,7 +340,7 @@ public class MySqlConnection {
 	/**
 	 * Returns a string showing how many credits the student is enrolled in
 	 * 
-	 * @return
+	 * @return String representing the number of credits the student is enrolled in
 	 */
 	public String getCreditsEnrolled() {
 
@@ -321,7 +364,7 @@ public class MySqlConnection {
 	/**
 	 * Returns a string showing when the student will graduate
 	 * 
-	 * @return
+	 * @return String representing the expected graduation date
 	 */
 	public String getEstGradDate() {
 

@@ -5,7 +5,7 @@ package termProj;
  * id. It also holds an integer array signifying what/when classes the
  * individual has taken
  * 
- * @author brown8jt - Josh Brown
+ * @author brown8jt - Josh Brown; Zach Richard
  * @version 1.0.5
  *
  */
@@ -196,7 +196,7 @@ public class Student {
 
 		// multiply how many classes the student is currently in by 3
 		int credEnrolled = this.semesterCourses.length * 3;
-		
+
 		String retString = "Current Credits Enrolled: " + credEnrolled;
 		return retString;
 
@@ -204,10 +204,11 @@ public class Student {
 
 	/**
 	 * This method calculates the estimated graduation date of the student
+	 * 
 	 * @return
 	 */
 	public String estGradDate() {
-		
+
 		int addSem = 0;
 
 		if (programCourses[8].getSemesterTaken() == 0) {
