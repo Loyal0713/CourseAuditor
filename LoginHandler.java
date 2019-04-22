@@ -35,27 +35,27 @@ public class LoginHandler {
 		// connect to the database
 		status = con.connect();
 
-		// unsuccessful connection
-		if (!status.equals("MSC.c001")) {
-
-			title = "Error: " + status + "!";
-			content = "";
-
-			if (status.equals("MSC.c002")) {
-
-				// driver not found
-				content = "Could not find JDBC driver!";
-
-			} else {
-
-				// unsuccessful database connection attempt
-				content = "Could not connect to database!";
-
-			}
-
-			PopUpHandler pu = new PopUpHandler(title, content, status, con);
-
-		}
+//		// unsuccessful connection
+//		if (!status.equals("MSC.c001")) {
+//
+//			title = "Error: " + status + "!";
+//			content = "";
+//
+//			if (status.equals("MSC.c002")) {
+//
+//				// driver not found
+//				content = "Could not find JDBC driver!";
+//
+//			} else {
+//
+//				// unsuccessful database connection attempt
+//				content = "Could not connect to database!";
+//
+//			}
+//
+//			PopUpHandler pu = new PopUpHandler(title, content, status, con);
+//
+//		}
 
 		// add action listener to button
 		this.loginBtn.addActionListener(new ActionListener() {
@@ -76,6 +76,7 @@ public class LoginHandler {
 
 					title = "Logged in!";
 					content = "Welcome " + con.getStudentLastFirstName() + "!";
+					System.out.println("Logged in!");
 
 				}
 
@@ -84,6 +85,7 @@ public class LoginHandler {
 
 					title = "Error: " + status + "!";
 					content = "Could not find student with given username/password!";
+					System.out.println("No student with given username/password!");
 
 				}
 
@@ -92,8 +94,11 @@ public class LoginHandler {
 
 					title = "Error: " + status + "!";
 					content = "There is a student already logged in!";
+					System.out.println("Student already logged in!");
 
 				}
+				
+				view.dispose();
 
 				// launch popup window
 				PopUpHandler pu = new PopUpHandler(title, content, status, con);

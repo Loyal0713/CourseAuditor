@@ -103,7 +103,7 @@ public class Student {
 		}
 
 		// create string showing what the start date was
-		String startDate = "Your start date was the semester " + displaySemester(startNum);
+		String startDate = "You started in: " + displaySemester(startNum);
 		return startDate;
 
 	}
@@ -183,7 +183,7 @@ public class Student {
 
 		// subtract the current number of credits completed from the total needed
 		int credLeft = 49 - this.numCredCompleted;
-		return ("Total Credits left to take in major: " + credLeft);
+		return ("Total Credits Remaining: " + credLeft);
 
 	}
 
@@ -272,7 +272,7 @@ public class Student {
 			}
 		}
 
-		String estGrad = "Your Estimated graduation semester is " + displaySemester(semester);
+		String estGrad = "Your Estimated Graduation Semeseter: " + displaySemester(semester);
 		return estGrad;
 	}
 
@@ -320,6 +320,22 @@ public class Student {
 
 		return this.lastName + ", " + this.firstName;
 
+	}
+
+	public String getFirstLastName() {
+
+		return this.firstName + " " + this.lastName;
+
+	}
+
+	public Course[] getProgramCourses() {
+
+		return this.programCourses;
+	}
+
+	public Course[] getSemesterCourses() {
+
+		return this.semesterCourses;
 	}
 
 }

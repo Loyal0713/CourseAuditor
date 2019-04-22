@@ -23,6 +23,8 @@ public class MySqlConnection {
 	private final static String username = "root"; // username to connect to data base
 	private final static String password = "cps410"; // password for user
 
+	private int currSemester = 2019;
+
 	private static Connection con = null; // connection to the server
 	private static MySqlConnection currDBSession = null; // single instance of this class
 	private static Student currStudentSession = null; // current student logged into system
@@ -383,6 +385,75 @@ public class MySqlConnection {
 		}
 
 		return retString;
+	}
+
+	public String getStudentStats() {
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			return "No current session!";
+
+		} else {
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.append(this.currStudentSession.startDate() + "\n");
+			sb.append(this.currStudentSession.creditsCompleted() + "\n");
+			sb.append(this.currStudentSession.creditsLeft() + "\n");
+			sb.append(this.currStudentSession.creditsEnrolled() + "\n");
+			sb.append(this.currStudentSession.estGradDate());
+
+			return sb.toString();
+
+		}
+
+	}
+
+	public Course[] getProgramCourses() {
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			return null;
+
+		} else {
+
+			// there is a student logged in
+			return this.currStudentSession.getProgramCourses();
+		}
+
+	}
+
+	public Course[] getSemesterCourses() {
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			return null;
+
+		} else {
+
+			// there is a student logged in
+			return this.currStudentSession.getSemesterCourses();
+		}
+		
+
+	}
+
+	public String getStudentFirstLastName() {
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			return null;
+
+		} else {
+
+			// there is a student logged in
+			return this.currStudentSession.getFirstLastName();
+		}
+		
 	}
 
 }

@@ -28,9 +28,6 @@ public class PopUpHandler {
 		// set title
 		this.view.setTitle(title);
 
-		// set content text
-		this.view.setContentLabel(content);
-
 		// add action listener to button
 		this.okBtn.addActionListener(new ActionListener() {
 
@@ -41,11 +38,13 @@ public class PopUpHandler {
 
 					// go to student view
 					StudentHandler sh = new StudentHandler(con);
+					view.dispose();
 
 				} else {
 
 					// go back to login view
 					LoginHandler lh = new LoginHandler();
+					view.dispose();
 
 				}
 
