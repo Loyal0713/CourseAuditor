@@ -161,7 +161,7 @@ public class MySqlConnection {
 
 				// create query - get individual students program view
 				Statement stmt = con.createStatement();
-				String query = "select * from programview where ID = " + id;
+				String query = "select * from programview where ID = " + id ;
 
 				// execute query
 				ResultSet rs = stmt.executeQuery(query);
@@ -175,6 +175,7 @@ public class MySqlConnection {
 				int idResult = rs.getInt(3);
 
 				int[] programCourses = new int[18];
+				String[] semesterCourses = new String[7];
 
 				// get the program history of the student
 				for (int i = 0; i < programCourses.length; i++) {
@@ -183,8 +184,19 @@ public class MySqlConnection {
 
 				}
 
+				query = "select * from semview where ID = " + id;
+				rs = stmt.executeQuery(query);
+				rs.next();
+
+				for (int i = 0; i < semesterCourses.length; i++) {
+
+					semesterCourses[i] = rs.getString(i + 5);
+
+				}
+
 				// create new student for the session
-				currStudentSession = new Student(lastNameResult, firstNameResult, idResult, programCourses);
+				currStudentSession = new Student(lastNameResult, firstNameResult, idResult, programCourses,
+						semesterCourses);
 
 				// log to console that student was logged in
 				msg = "MSC.li001";
@@ -425,7 +437,7 @@ public class MySqlConnection {
 
 	}
 
-	public Course[] getSemesterCourses() {
+	public String[] getSemesterCourses() {
 
 		// there is no student currently logged in
 		if (currStudentSession == null) {
@@ -437,7 +449,6 @@ public class MySqlConnection {
 			// there is a student logged in
 			return this.currStudentSession.getSemesterCourses();
 		}
-		
 
 	}
 
@@ -453,7 +464,61 @@ public class MySqlConnection {
 			// there is a student logged in
 			return this.currStudentSession.getFirstLastName();
 		}
-		
+
+	}
+
+	public String programCourseToString() {
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			return null;
+
+		} else {
+
+			StringBuilder sb = new StringBuilder();
+
+			Course[] course = currStudentSession.getProgramCourses();
+
+			for (int i = 0; i < course.length; i++) {
+
+				sb.append(course[i].toString() + "\n");
+
+			}
+
+			// there is a student logged in
+			return sb.toString();
+		}
+
+	}
+
+	public String semesterCourseToString() {
+
+		// there is no student currently logged in
+		if (currStudentSession == null) {
+
+			return null;
+
+		} else {
+
+			StringBuilder sb = new StringBuilder();
+
+			String[] course = currStudentSession.getSemesterCourses();
+
+			for (int i = 0; i < course.length; i++) {
+				
+				if (!(course[i] == null)) {
+
+					sb.append(course[i].toString() + "\n");
+
+				}
+
+			}
+
+			// there is a student logged in
+			return sb.toString();
+		}
+
 	}
 
 }
