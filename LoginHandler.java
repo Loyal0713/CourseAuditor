@@ -35,28 +35,6 @@ public class LoginHandler {
 		// connect to the database
 		status = con.connect();
 
-//		// unsuccessful connection
-//		if (!status.equals("MSC.c001")) {
-//
-//			title = "Error: " + status + "!";
-//			content = "";
-//
-//			if (status.equals("MSC.c002")) {
-//
-//				// driver not found
-//				content = "Could not find JDBC driver!";
-//
-//			} else {
-//
-//				// unsuccessful database connection attempt
-//				content = "Could not connect to database!";
-//
-//			}
-//
-//			PopUpHandler pu = new PopUpHandler(title, content, status, con);
-//
-//		}
-
 		// add action listener to button
 		this.loginBtn.addActionListener(new ActionListener() {
 
@@ -98,9 +76,9 @@ public class LoginHandler {
 
 				}
 				
-				view.dispose();
+				view.dispose(); // close view
 
-				// launch popup window
+				// launch pop up window
 				PopUpHandler pu = new PopUpHandler(title, content, status, con);
 
 			}

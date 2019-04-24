@@ -4,15 +4,22 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		//LoginHandler lh = new LoginHandler();
-		
-		MySqlConnection con = MySqlConnection.getInstance();
-		con.connect();
-		con.login(" ", "324567");
+		LoginHandler lh = new LoginHandler();
 
-		System.out.println(con.getAllStudentInfo());
+		/**
+		 * 
+		 * DEBUG STUFF
+		 * 
+		 * The below code does not launch a gui and is used to quickly debug
+		 * the MySqlConnection class
+		 * 
+		 */
 		
-		
+		// MySqlConnection con = MySqlConnection.getInstance();
+		// con.connect();
+		// con.login(" ", "324567");
+		//
+		// System.out.println(con.getAllStudentInfo());
 
 	}
 

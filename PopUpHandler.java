@@ -18,11 +18,30 @@ public class PopUpHandler {
 	private MySqlConnection con;
 	private JButton okBtn;
 
+	/**
+	 * Public constructor
+	 * 
+	 * @param title
+	 *            - String representing what the pop up title should be
+	 * @param content
+	 *            - String representing the content of the pop up message
+	 * @param status
+	 *            - String representing the status that controls what window to open
+	 *            next
+	 * @param con
+	 *            - MySqlConnection representing the connection to the database
+	 */
 	public PopUpHandler(String title, String content, String status, MySqlConnection con) {
 
 		// initialize connection, view, okay button, and content area
 		this.con = con;
-		this.view = new PopUpView(title, content, status);
+
+		if (status.equals("MSC.li001")) {
+			this.view = new PopUpView(title, content, "");
+		} else if (status.equals("MSC.li002")) {
+			this.view = new PopUpView(title, content, "Username/Password incorrect!");
+		}
+
 		this.okBtn = this.view.getOkBtn();
 
 		// set title

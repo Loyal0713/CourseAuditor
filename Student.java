@@ -16,7 +16,7 @@ public class Student {
 	private int currSemester = 2019500; // current semester
 	private int numCredCompleted = 0; // number of credits the students has completed
 	private Course[] programCourses; // array of all courses student has taken for the program
-	private Course[] semesterCourses; // array of all courses student is taking in the current semester
+	private String[] semesterCourses; // array of all courses student is taking in the current semester
 
 	// list of all courses in CPS program
 	private String[] courseName = { "CPS 180", "CPS 181", "CPS 210", "CPS 240", "CPS 340", "CPS 360", "CPS 410",
@@ -35,7 +35,7 @@ public class Student {
 	 * @param courses
 	 *            - Array of integers signifying dates courses were/will be taken
 	 */
-	public Student(String lastName, String firstName, int id, int[] courses) {
+	public Student(String lastName, String firstName, int id, int[] courses, String[] semCourses) {
 
 		this.lastName = lastName; // set last name
 		this.firstName = firstName; // set first name
@@ -58,23 +58,7 @@ public class Student {
 		}
 
 		// create semester course array
-		this.semesterCourses = new Course[counter];
-
-		// pointer to keep track of what index to put into the semester array
-		int ptr = 0;
-
-		// loop through all courses in program
-		for (int i = 0; i < this.programCourses.length; i++) {
-
-			// check if course is currently being taken
-			if (this.programCourses[i].getSemesterTaken() == this.currSemester) {
-
-				this.semesterCourses[ptr] = this.programCourses[i];
-				ptr++;
-
-			}
-
-		}
+		this.semesterCourses = semCourses;
 
 	}
 
@@ -322,18 +306,33 @@ public class Student {
 
 	}
 
+	/**
+	 * Returns a string of the students first and last name
+	 * 
+	 * @return - String
+	 */
 	public String getFirstLastName() {
 
 		return this.firstName + " " + this.lastName;
 
 	}
 
+	/**
+	 * Returns Course array containing all the courses in students program
+	 * 
+	 * @return - Course array
+	 */
 	public Course[] getProgramCourses() {
 
 		return this.programCourses;
 	}
 
-	public Course[] getSemesterCourses() {
+	/**
+	 * Returns String array containing all the courses the student is in
+	 * 
+	 * @return - String array
+	 */
+	public String[] getSemesterCourses() {
 
 		return this.semesterCourses;
 	}

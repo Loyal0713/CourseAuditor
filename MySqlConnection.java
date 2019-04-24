@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class handles all communication made between the mysql database server
@@ -161,7 +163,7 @@ public class MySqlConnection {
 
 				// create query - get individual students program view
 				Statement stmt = con.createStatement();
-				String query = "select * from programview where ID = " + id ;
+				String query = "select * from programview where ID = " + id;
 
 				// execute query
 				ResultSet rs = stmt.executeQuery(query);
@@ -399,6 +401,11 @@ public class MySqlConnection {
 		return retString;
 	}
 
+	/**
+	 * Returns a string that shows all the stats relevant to the student
+	 * 
+	 * @return - String
+	 */
 	public String getStudentStats() {
 
 		// there is no student currently logged in
@@ -422,6 +429,11 @@ public class MySqlConnection {
 
 	}
 
+	/**
+	 * Returns all the program courses the student is in
+	 * 
+	 * @return - Course array containing all program courses
+	 */
 	public Course[] getProgramCourses() {
 
 		// there is no student currently logged in
@@ -437,6 +449,11 @@ public class MySqlConnection {
 
 	}
 
+	/**
+	 * Returns the names of the courses the student is currently enrolled in
+	 * 
+	 * @return - String array holding all semester courses
+	 */
 	public String[] getSemesterCourses() {
 
 		// there is no student currently logged in
@@ -452,6 +469,11 @@ public class MySqlConnection {
 
 	}
 
+	/**
+	 * Returns the first and last name of the currently logged in student
+	 * 
+	 * @return - String
+	 */
 	public String getStudentFirstLastName() {
 
 		// there is no student currently logged in
@@ -467,6 +489,12 @@ public class MySqlConnection {
 
 	}
 
+	/**
+	 * Returns a string of all the program courses and whether they were completed
+	 * or if they need to be completed
+	 * 
+	 * @return - String
+	 */
 	public String programCourseToString() {
 
 		// there is no student currently logged in
@@ -478,11 +506,36 @@ public class MySqlConnection {
 
 			StringBuilder sb = new StringBuilder();
 
-			Course[] course = currStudentSession.getProgramCourses();
+			Course[] course = currStudentSession.getProgramCourses(); // get courses
 
+			List<Course> needToTake = new ArrayList<Course>();
+
+			sb.append("Completed:\n");
+
+			// add all completed courses
 			for (int i = 0; i < course.length; i++) {
 
-				sb.append(course[i].toString() + "\n");
+				if (course[i].getSemesterTaken() == 0) {
+
+					needToTake.add(course[i]);
+				}
+
+			}
+
+			// loop through all courses
+			for (int i = 0; i < course.length; i++) {
+
+				if (course[i].getSemesterTaken() != 0) {
+					sb.append(course[i].cleanString() + "\n");
+				}
+
+			}
+
+			sb.append("\nNeed to complete:\n");
+
+			for (int i = 0; i < needToTake.size(); i++) {
+
+				sb.append(needToTake.get(i).getCourseName() + "\n");
 
 			}
 
@@ -492,6 +545,11 @@ public class MySqlConnection {
 
 	}
 
+	/**
+	 * Returns a String that shows the current semester courses
+	 * 
+	 * @return
+	 */
 	public String semesterCourseToString() {
 
 		// there is no student currently logged in
@@ -503,10 +561,13 @@ public class MySqlConnection {
 
 			StringBuilder sb = new StringBuilder();
 
+			sb.append("You are currently enrolled in:\n");
+
 			String[] course = currStudentSession.getSemesterCourses();
 
+			// loop through all courses
 			for (int i = 0; i < course.length; i++) {
-				
+
 				if (!(course[i] == null)) {
 
 					sb.append(course[i].toString() + "\n");

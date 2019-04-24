@@ -1,21 +1,20 @@
 package termProj;
 
-import javax.swing.JButton;
-
+/**
+ * Handler that handles communication between the window and the system
+ * 
+ * @author brown8jt - Josh Brown
+ *
+ */
 public class StudentHandler {
 
-	private StudentView view;
-	private MySqlConnection con;
-	private JButton logout;
-	
+	private StudentView view; // window
+
 	public StudentHandler(MySqlConnection con) {
-		
-		this.con = con;
-		this.view = new StudentView(con.getProgramCourses(), con.getSemesterCourses(), con.getStudentFirstLastName(), con.getStudentStats());
-		
-		
-		
-		
+
+		this.view = new StudentView(con.programCourseToString(), con.semesterCourseToString(), con.getStudentStats(),
+				con.getStudentFirstLastName());
+
 	}
 
 }
