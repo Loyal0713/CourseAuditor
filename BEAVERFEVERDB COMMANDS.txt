@@ -1,0 +1,65 @@
+CREATE TABLE Student(
+FirstName VARCHAR(50), 
+LastName VARCHAR (50),
+StudentID INTEGER PRIMARY KEY NOT NULL 
+);
+
+CREATE TABLE Courses(
+CourseName VARCHAR(50),
+Semester VARCHAR(50),
+Year VARCHAR(50)
+);
+
+ALTER TABLE Student 
+ADD Year VARCHAR(50);
+
+INSERT INTO Student( FirstName, LastName, StudentID, YEAR) 
+VALUES ("Frank" , "Apple" , "123456" , "2019500");
+
+INSERT INTO Student( FirstName, LastName, StudentID, YEAR) 
+VALUES ("Sue", "Blueberry", "234567" , "2019500");
+
+INSERT INTO Student( FirstName, LastName, StudentID, YEAR) 
+VALUES ("Joe", "Carrots", "324567" , "2019500");  
+
+INSERT INTO Courses (CourseName, Semester, Year)
+VALUES ("CPS180","300 ,500 , 700","2017, 2018 , 2019"); - Done
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS181","500 300","2019 2018"); 
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS210","500 , 300","2018 , 2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS240","300, 500","2018, 2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS340","300 , 500"," 2019 ");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS360","300 , 500"," 2019 ");
+
+INSERT INTO Courses (CourseName, Semester, Year)- done
+VALUES ("CPS410","500","2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS450","500","2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("MTH175","500","2019");
+
+INSERT INTO Courses (CourseName) - done
+VALUES ("MTH132");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("MTH223","500","2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("STA382QR","500","2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS 396D","500","2019");
+
+INSERT INTO Courses (CourseName, Semester, Year) - done
+VALUES ("CPS 395","700","2018");
