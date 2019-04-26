@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS SemView (
+    `Last_Name` VARCHAR(9) CHARACTER SET utf8,
+    `First_Name` VARCHAR(5) CHARACTER SET utf8,
+    `Semester` INT,
+    `ID` INT,
+    `Course_1` VARCHAR(7) CHARACTER SET utf8,
+    `Course_2` VARCHAR(7) CHARACTER SET utf8,
+    `Course_3` VARCHAR(8) CHARACTER SET utf8,
+    `Course_4` VARCHAR(7) CHARACTER SET utf8,
+    `Course_5` VARCHAR(9) CHARACTER SET utf8,
+    `Course_6` INT,
+    `Course_7` INT
+);
+INSERT INTO SemView VALUES
+    ('Apple','Frank',2019500,123456,'CPS 410','CPS 450','CPS 470',NULL,NULL,NULL,NULL),
+    ('Blueberry','Sue',2019500,234567,'CPS 340','CPS 360','CPS 396D','MTH 223','STA 382QR',NULL,NULL),
+    ('Carrots','Joe',2019500,324567,'CPS 181','CPS 210','MTH 175','GEO 110','ENG 201',NULL,NULL);
