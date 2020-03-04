@@ -1,4 +1,3 @@
-package termProj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +7,8 @@ import javax.swing.JLabel;
 
 /**
  * This class represents a handler for any popups the system may need.
- * 
- * @author brown8jt - Josh Brown
+ *
+ * @author Josh Brown
  *
  */
 public class PopUpHandler {
@@ -20,7 +19,7 @@ public class PopUpHandler {
 
 	/**
 	 * Public constructor
-	 * 
+	 *
 	 * @param title
 	 *            - String representing what the pop up title should be
 	 * @param content

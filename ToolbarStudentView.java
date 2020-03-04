@@ -1,16 +1,14 @@
-package termProj;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
  * Class representing the tool bar contained in the student view
- * 
+ *
  * @author Avery Little
  *
  */
@@ -26,7 +24,7 @@ public class ToolbarStudentView extends JPanel implements ActionListener {
 
 	/**
 	 * Public constructor
-	 * 
+	 *
 	 * @param program
 	 *            - String for program info
 	 * @param semester

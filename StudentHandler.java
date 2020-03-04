@@ -1,9 +1,8 @@
-package termProj;
 
 /**
  * Handler that handles communication between the window and the system
- * 
- * @author brown8jt - Josh Brown
+ *
+ * @author Josh Brown
  *
  */
 public class StudentHandler {

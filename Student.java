@@ -1,12 +1,10 @@
-package termProj;
 
 /**
  * This class represents a student. It holds a first and last name with a unique
  * id. It also holds an integer array signifying what/when classes the
  * individual has taken
- * 
- * @author brown8jt - Josh Brown; Zach Richard
- * @version 1.0.5
+ *
+ * @author Josh Brown; Zach Richard
  *
  */
 public class Student {
@@ -25,7 +23,7 @@ public class Student {
 
 	/**
 	 * Constructor for student
-	 * 
+	 *
 	 * @param lastName
 	 *            - String for last name of student
 	 * @param firstName
@@ -64,7 +62,7 @@ public class Student {
 
 	/**
 	 * This method gets the start date the student started courses on
-	 * 
+	 *
 	 * @return String representing when the student first started courses
 	 */
 	public String startDate() {
@@ -94,7 +92,7 @@ public class Student {
 
 	/**
 	 * Parses an integer into the year and season a course was taken
-	 * 
+	 *
 	 * @param sem
 	 *            - Integer in format XXXXYYY where XXXX is the year and YYY is the
 	 *            semester the course was taken
@@ -127,7 +125,7 @@ public class Student {
 
 	/**
 	 * This method calculates how many credits a student has completed
-	 * 
+	 *
 	 * @return String representing how many credits the student has completed
 	 */
 	public String creditsCompleted() {
@@ -160,7 +158,7 @@ public class Student {
 
 	/**
 	 * This method calculates how many credits the student has left
-	 * 
+	 *
 	 * @return String showing how many credits student has yet to complete
 	 */
 	public String creditsLeft() {
@@ -173,7 +171,7 @@ public class Student {
 
 	/**
 	 * This method calculates how many credits the student currently is enrolled in
-	 * 
+	 *
 	 * @return String showing how many credits the student currently has
 	 */
 	public String creditsEnrolled() {
@@ -188,7 +186,7 @@ public class Student {
 
 	/**
 	 * This method calculates the estimated graduation date of the student
-	 * 
+	 *
 	 * @return
 	 */
 	public String estGradDate() {
@@ -263,7 +261,7 @@ public class Student {
 	/**
 	 * This method returns a string in the format: Last Name, First Name, Id then a
 	 * list of all course information
-	 * 
+	 *
 	 * @return String showing all information of the student object
 	 */
 	public String toString() {
@@ -297,7 +295,7 @@ public class Student {
 
 	/**
 	 * This method returns a string in the format: Last Name, First Name
-	 * 
+	 *
 	 * @return String showing only the first and last name
 	 */
 	public String getLastFirstName() {
@@ -308,7 +306,7 @@ public class Student {
 
 	/**
 	 * Returns a string of the students first and last name
-	 * 
+	 *
 	 * @return - String
 	 */
 	public String getFirstLastName() {
@@ -319,7 +317,7 @@ public class Student {
 
 	/**
 	 * Returns Course array containing all the courses in students program
-	 * 
+	 *
 	 * @return - Course array
 	 */
 	public Course[] getProgramCourses() {
@@ -329,7 +327,7 @@ public class Student {
 
 	/**
 	 * Returns String array containing all the courses the student is in
-	 * 
+	 *
 	 * @return - String array
 	 */
 	public String[] getSemesterCourses() {

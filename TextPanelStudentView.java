@@ -1,14 +1,12 @@
-package termProj;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
  * Class that handles the text area view that shows student information
- * 
+ *
  * @author Avery Little
  *
  */
@@ -34,7 +32,7 @@ public class TextPanelStudentView extends JPanel {
 
 	/**
 	 * Adds text to the text area
-	 * 
+	 *
 	 * @param text
 	 *            - String to be appended to the text area
 	 */
@@ -44,7 +42,7 @@ public class TextPanelStudentView extends JPanel {
 
 	/**
 	 * Clears and appends text to the text area
-	 * 
+	 *
 	 * @param text
 	 *            - String that the text area will show
 	 */

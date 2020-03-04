@@ -1,14 +1,12 @@
-package termProj;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
  * Class representing the window that shows all relevant student stuff
- * 
- * @author brown8jt - Josh Brown; Avery Little
+ *
+ * @author Josh Brown; Avery Little
  *
  */
 public class StudentView extends JFrame { // must extends for methods to work
@@ -19,7 +17,7 @@ public class StudentView extends JFrame { // must extends for methods to work
 
 	/**
 	 * Public constructor
-	 * 
+	 *
 	 * @param program
 	 *            - String representing what will be shown on the program view
 	 * @param semester
@@ -55,7 +53,7 @@ public class StudentView extends JFrame { // must extends for methods to work
 
 	/**
 	 * This allows the view to show information upon initial start up of the frame
-	 * 
+	 *
 	 * @param program
 	 *            - String representing program information which is the first thing
 	 *            shown

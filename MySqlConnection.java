@@ -1,4 +1,3 @@
-package termProj;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,9 +10,8 @@ import java.util.List;
 /**
  * This class handles all communication made between the mysql database server
  * and the course auditor program itself
- * 
- * @author brown8jt - Josh Brown
- * @since 3/11/2019
+ *
+ * @author Josh Brown
  *
  */
 
@@ -23,7 +21,7 @@ public class MySqlConnection {
 	private final static String jdbcDriver = "com.mysql.cj.jdbc.Driver"; // driver for mysql
 	private final static String serverIP = "jdbc:mysql://localhost:3306/beaver_fever"; // ip for data base
 	private final static String username = "root"; // username to connect to data base
-	private final static String password = "cps410"; // password for user
+	private final static String password = ""; // password for user
 
 	private int currSemester = 2019;
 
@@ -41,7 +39,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a singular instance of the class
-	 * 
+	 *
 	 * @return MySqlConnection - Represents a communication link between the
 	 *         database and the program
 	 */
@@ -49,23 +47,17 @@ public class MySqlConnection {
 
 		// check if there is an instance of this class
 		if (currDBSession == null) {
-
-			// create new instance of this class
 			currDBSession = new MySqlConnection();
-
 		}
-
-		// return sole instance
 		return currDBSession;
-
 	}
 
 	/**
 	 * Connects class to the database and returns a code determining status
-	 * 
+	 *
 	 * MSC.c001 = could not find the jdbc driver; MSC.c002 = successful connection
 	 * to database; MSC.c003 = unsuccessful connection to database
-	 * 
+	 *
 	 * @return String representing status of the connection process
 	 */
 	public String connect() {
@@ -106,7 +98,7 @@ public class MySqlConnection {
 
 	/**
 	 * Logs student off of system and returns a code signifying successful logout
-	 * 
+	 *
 	 * @return String representing successful logout code
 	 */
 	public String logout() {
@@ -120,10 +112,10 @@ public class MySqlConnection {
 	}
 
 	/**
-	 * 
+	 *
 	 * Disconnects class from database and returns code signifying successful
 	 * disconnection
-	 * 
+	 *
 	 * @return String representing successful disconnection
 	 */
 	public String disconnect() {
@@ -143,10 +135,10 @@ public class MySqlConnection {
 	/**
 	 * Logs a student in using an id (ADD USERNAME VERIFICATION!!) and returns a
 	 * code signifying whether the login was successful or not
-	 * 
+	 *
 	 * MSC.li001 = successful login; MSC.li002 = could not find student with given
 	 * id; MSC.li003 = a student was already logged in
-	 * 
+	 *
 	 * @param lastName
 	 *            - String representing last name of student trying to log in
 	 * @param id
@@ -206,7 +198,7 @@ public class MySqlConnection {
 			} catch (SQLException e) {
 
 				msg = "MSC.li002";
-				// e.printStackTrace();
+				
 			}
 
 		} else {
@@ -223,7 +215,7 @@ public class MySqlConnection {
 	/**
 	 * This method gets a students last then first name OR that there is no
 	 * currently running session if there is no student logged in
-	 * 
+	 *
 	 * @return String representing the first and last name of the student logged in
 	 *         OR that there was no student logged in
 	 */
@@ -251,11 +243,11 @@ public class MySqlConnection {
 	 * This method gets all the currently logged in student's information as a
 	 * String OR that there is no currently running session if there is no student
 	 * logged in
-	 * 
+	 *
 	 * @return String representing the first and last name, id, and all course
 	 *         information of the currently logged in student OR that there was no
 	 *         student logged in
-	 * 
+	 *
 	 */
 	public String getAllStudentInfo() {
 
@@ -279,7 +271,7 @@ public class MySqlConnection {
 	/**
 	 * This method gets the start date of the student currently logged in OR show
 	 * that there is no current session
-	 * 
+	 *
 	 * @return String representing the start date of the student
 	 */
 	public String getStartDate() {
@@ -304,7 +296,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a string showing how many credits the student has completed
-	 * 
+	 *
 	 * @return String representing the number of credits completed
 	 */
 	public String getCreditsCompleted() {
@@ -329,7 +321,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a string showing how many credits the student has yet to complete
-	 * 
+	 *
 	 * @return String representing the number of credits the student has yet to
 	 *         complete
 	 */
@@ -355,7 +347,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a string showing how many credits the student is enrolled in
-	 * 
+	 *
 	 * @return String representing the number of credits the student is enrolled in
 	 */
 	public String getCreditsEnrolled() {
@@ -379,7 +371,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a string showing when the student will graduate
-	 * 
+	 *
 	 * @return String representing the expected graduation date
 	 */
 	public String getEstGradDate() {
@@ -403,7 +395,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a string that shows all the stats relevant to the student
-	 * 
+	 *
 	 * @return - String
 	 */
 	public String getStudentStats() {
@@ -431,7 +423,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns all the program courses the student is in
-	 * 
+	 *
 	 * @return - Course array containing all program courses
 	 */
 	public Course[] getProgramCourses() {
@@ -451,7 +443,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns the names of the courses the student is currently enrolled in
-	 * 
+	 *
 	 * @return - String array holding all semester courses
 	 */
 	public String[] getSemesterCourses() {
@@ -471,7 +463,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns the first and last name of the currently logged in student
-	 * 
+	 *
 	 * @return - String
 	 */
 	public String getStudentFirstLastName() {
@@ -492,7 +484,7 @@ public class MySqlConnection {
 	/**
 	 * Returns a string of all the program courses and whether they were completed
 	 * or if they need to be completed
-	 * 
+	 *
 	 * @return - String
 	 */
 	public String programCourseToString() {
@@ -547,7 +539,7 @@ public class MySqlConnection {
 
 	/**
 	 * Returns a String that shows the current semester courses
-	 * 
+	 *
 	 * @return
 	 */
 	public String semesterCourseToString() {

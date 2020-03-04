@@ -1,17 +1,14 @@
-package termProj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
 /**
  * This class represents a handler of both the Login window and the database
  * connection
- * 
- * @author brown8jt - Josh Brown
- * @since 4/20/2019
- * 
+ *
+ * @author Josh Brown
+ *
  */
 public class LoginHandler {
 
@@ -75,7 +72,7 @@ public class LoginHandler {
 					System.out.println("Student already logged in!");
 
 				}
-				
+
 				view.dispose(); // close view
 
 				// launch pop up window

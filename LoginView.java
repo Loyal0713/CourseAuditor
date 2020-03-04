@@ -1,10 +1,8 @@
-package termProj;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +12,8 @@ import javax.swing.JTextField;
 
 /**
  * Class representing the login window
- * 
- * @author brown8jt - Josh Brown
+ *
+ * @author Josh Brown
  *
  */
 public class LoginView extends JFrame {
@@ -68,7 +66,7 @@ public class LoginView extends JFrame {
 
 	/**
 	 * Returns the login button
-	 * 
+	 *
 	 * @return - JButton representing login button
 	 */
 	public JButton getLoginBtn() {
@@ -78,7 +76,7 @@ public class LoginView extends JFrame {
 
 	/**
 	 * Returns the username
-	 * 
+	 *
 	 * @return - String representing the username
 	 */
 	public String getUserName() {
@@ -88,7 +86,7 @@ public class LoginView extends JFrame {
 
 	/**
 	 * Returns the password
-	 * 
+	 *
 	 * @return - String representing the username
 	 */
 	public String getPassword() {

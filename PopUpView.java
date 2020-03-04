@@ -1,4 +1,3 @@
-package termProj;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -9,8 +8,8 @@ import javax.swing.JLabel;
 
 /**
  * Class representing the window for all pop ups
- * 
- * @author brown8jt - Josh Brown
+ *
+ * @author Josh Brown
  *
  */
 public class PopUpView extends JFrame {
@@ -19,7 +18,7 @@ public class PopUpView extends JFrame {
 
 	/**
 	 * Public constructor
-	 * 
+	 *
 	 * @param title
 	 *            - String title for frame
 	 * @param content
@@ -52,7 +51,7 @@ public class PopUpView extends JFrame {
 
 	/**
 	 * Returns the button
-	 * 
+	 *
 	 * @return - JButton representing the okay button
 	 */
 	public JButton getOkBtn() {

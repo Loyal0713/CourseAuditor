@@ -1,10 +1,9 @@
-package termProj;
 
 /**
  * Class that represents a course with a course name and a semester taken (0 if
  * not taken)
- * 
- * @author brown8jt - Josh Brown
+ *
+ * @author Josh Brown
  *
  */
 public class Course {
@@ -14,7 +13,7 @@ public class Course {
 
 	/**
 	 * Public constructor for course class
-	 * 
+	 *
 	 * @param semesterTaken
 	 *            - Integer representing the semester the course was taken
 	 * @param courseName
@@ -29,7 +28,7 @@ public class Course {
 
 	/**
 	 * Returns the semester the course was taken
-	 * 
+	 *
 	 * @return - Integer representing semester taken
 	 */
 	public int getSemesterTaken() {
@@ -40,7 +39,7 @@ public class Course {
 
 	/**
 	 * Returns the name of the course
-	 * 
+	 *
 	 * @return - String representing the course name
 	 */
 	public String getCourseName() {
@@ -60,7 +59,7 @@ public class Course {
 
 	/**
 	 * Returns a string with the class name and the semester and year taken
-	 * 
+	 *
 	 * @return - String
 	 */
 	public String cleanString() {
